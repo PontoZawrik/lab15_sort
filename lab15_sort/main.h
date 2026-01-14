@@ -35,13 +35,13 @@ bool isStrDigit(char* string) {
 	}
 	int size = strlen(string);
 
-	bool result = false;
+	bool result = true;
 	for (int i = 0; i < size; i++) {
 		if (!isdigit(string[i])) {
+			result = false;
 			break;
 		}
 	}
-	result = true;
 
 	return result;
 }
@@ -90,7 +90,6 @@ int minFrom_char(Train* m, int position, int length) {
 
 void selectionSort_char(Train* m, int length) {
 	for (int i = 0; i < length - 1; i++) {
-		cout << m[i].destination << " - " << m[minFrom_char(m, i, length)].destination << endl;
 		mySwap(m[i], m[minFrom_char(m, i, length)]);
 	}
 }
@@ -108,4 +107,92 @@ void shellSort_char(Train* m, int n) {
 			}
 		}
 	}
+}
+
+int searchIndex(Train* arr, int size, int key) {
+	bool flag = true;
+	for (int i = 0; i < size - 1; i++) {
+		if (arr[i].trainNum < arr[i + 1].trainNum) {
+			flag = false;
+			break;
+		}
+	}
+
+	int result = -1;
+
+	if (flag) {
+		cout << "Бинарный поиск." << endl;
+		int first = 0, last = size - 1;
+		int centr = (first + last) / 2;
+
+		while (first <= last) {
+			if (arr[centr].trainNum == key) {
+				result = centr;
+				break;
+			}
+
+			if (arr[centr].trainNum < key) {
+				last = centr - 1;
+			}
+			else {
+				first = centr + 1;
+			}
+			centr = (first + last) / 2;
+		}
+	}
+	else {
+		cout << "Поиск перебором." << endl;
+		for (int i = 0; i < size; i++) {
+			if (arr[i].trainNum == key) {
+				result = i;
+				break;
+			}
+		}
+	}
+
+	return result;
+}
+
+int searchIndex(Train* arr, int size, char* key) {
+	bool flag = true;
+	for (int i = 0; i < size - 1; i++) {
+		if (strcmp(arr[i].destination, arr[i + 1].destination) > 0) {
+			flag = false;
+			break;
+		}
+	}
+
+	int result = -1;
+
+	if (flag) {
+		cout << "Бинарный поиск." << endl;
+		int first = 0, last = size - 1;
+		int centr = (first + last) / 2;
+
+		while (first <= last) {
+			if (strcmp(arr[centr].destination, key) == 0) {
+				result = centr;
+				break;
+			}
+
+			if (strcmp(arr[centr].destination, key) > 0) {
+				last = centr - 1;
+			}
+			else {
+				first = centr + 1;
+			}
+			centr = (first + last) / 2;
+		}
+	}
+	else {
+		cout << "Поиск перебором." << endl;
+		for (int i = 0; i < size; i++) {
+			if (strcmp(arr[i].destination, key) == 0) {
+				result = i;
+				break;
+			}
+		}
+	}
+
+	return result;
 }

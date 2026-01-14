@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include "main.h"
 
+void printTrain(Train*, int);
+
 int main() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
@@ -57,14 +59,37 @@ int main() {
 		}
 	} while (p < 1 || p > 4);
 	
+	cout << endl;
 	for (int i = 0; i < size; i++) {
 		cout << "Поезд " << i + 1 << ": " << endl;
+		printTrain(trains, i);
+	}
 
-		cout << "Пункт назначения: " << trains[i].destination
-			<< "\nНомер поезда: " << trains[i].trainNum
-			<< "\nВремя отправления: " << trains[i].departureTime[0] << ":" << trains[i].departureTime[1] << endl;
+	char searchText[40];
+	cout << "\nВведите искомый номер поезда или место прибытия: ";
+	cin >> searchText;
+
+	int findIndex = -1;
+	if (isStrDigit(searchText)) {
+		findIndex = searchIndex(trains, size, atoi(searchText));
+	}
+	else {
+		findIndex = searchIndex(trains, size, searchText);
+	}
+
+	if (findIndex >= 0) {
+		printTrain(trains, findIndex);
+	}
+	else {
+		cout << "Поезд не найден." << endl;
 	}
 
 	system("pause");
 	return 0;
+}
+
+void printTrain(Train* arr, int index) {
+	cout << "Пункт назначения: " << arr[index].destination
+		<< "\nНомер поезда: " << arr[index].trainNum
+		<< "\nВремя отправления: " << arr[index].departureTime[0] << ":" << arr[index].departureTime[1] << endl;
 }
