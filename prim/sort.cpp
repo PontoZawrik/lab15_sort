@@ -17,14 +17,14 @@ int main() {
 	SetConsoleCP(1251);
 
 	const int size = 10;
-	int ar[size] = { 9, 0, 8, 1, 7, 2, 6, 3, 5, 4 };
+	char ar[size] = { 'a', 'b', 'd', 'c', 't', 'e', 'g', 'a', 'w', 'g' };
 
 	cout << "Изначальный массив: " << endl;
-	print(ar, size);
+	printStr(ar, size);
 
-	quickSort(ar, 0, size - 1);
+	insertSort(ar, size);
 	cout << "\nОтсортированный массив : " << endl;
-	print(ar, size);
+	printStr(ar, size);
 
 	system("pause");
 	return 0;
@@ -82,7 +82,7 @@ void selectionSort(int* m, int length) {
 void insertSort(char* m, int n) {
 	for (int i = 1; i < n; i++) {
 		char t = m[i];
-		for (int j = i - 1; j > -1 & t < m[i]; j--) {
+		for (int j = i - 1; j > -1 & t < m[j]; j--) {
 			m[j + 1] = m[j];
 			m[j] = t;
 		}

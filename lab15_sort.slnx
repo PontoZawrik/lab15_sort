@@ -4,5 +4,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="lab15_sort/lab15_sort.vcxproj" Id="c24c1ad9-0659-4c21-a6f6-2fc4bda517b4" />
+  <Project Path="lab15_switch/lab15_switch.vcxproj" Id="02ed8c44-6095-4e7b-a277-26aa81100d7e" />
   <Project Path="prim/prim.vcxproj" Id="0072936d-eafd-46a9-81ff-f6c1ebe2a84d" />
 </Solution>
